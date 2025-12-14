@@ -26,19 +26,19 @@ for item in path.iterdir():
         img_path = path / DIRS[0] / item.name
         if not img_path.exists():
             shutil.move(str(item), str(img_path))
-    if item.is_file() and item.suffix.lower() in CODE:
+    elif item.is_file() and item.suffix.lower() in CODE:
         code_path = path / DIRS[1] / item.name
         if not code_path.exists():
             shutil.move(str(item), str(code_path))
-    if item.is_file() and item.suffix.lower() in DOC:
+    elif item.is_file() and item.suffix.lower() in DOC:
         doc_path = path / DIRS[2] / item.name
         if not doc_path.exists():
             shutil.move(str(item), str(doc_path))
-    if item.is_file() and item.suffix.lower() in ISO:
+    elif item.is_file() and item.suffix.lower() in ISO:
         iso_path = path / DIRS[3] / item.name
         if not iso_path.exists():
             shutil.move(str(item), str(iso_path))
-    if item.is_file() and item.suffix.lower() in ARCH:
+    elif item.is_file() and item.suffix.lower() in ARCH:
         archive_path = path / DIRS[4] / item.name
         if not archive_path.exists():
             shutil.move(str(item), str(archive_path))
