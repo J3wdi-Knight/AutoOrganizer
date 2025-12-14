@@ -3,7 +3,7 @@
 import sys
 import pathlib, shutil, argparse
 
-# Parse every arguments
+# Parse arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('--path', default='~/Downloads')
 parser.add_argument('--test-mode', action='store_true', help='Test mode is on')
@@ -18,7 +18,7 @@ DOC = ['.pdf', '.doc', '.docx', '.djvu']
 ISO = ['.iso', '.img']
 ARCH = ['.zip', '.tar', '.gz', '.bz2']
 
-# Array goal dirs
+# Target dirs
 DIRS = ['Images', 'Code', 'Doc', 'Iso', 'Archives']
 
 # Check existance of the dir.
