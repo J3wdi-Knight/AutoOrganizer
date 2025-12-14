@@ -1,26 +1,43 @@
 #!/usr/bin/env python
 
 import sys
-import pathlib, shutil
+import pathlib, shutil, argparse
 
-path = pathlib.Path('~/Downloads').expanduser()
+# Parse every arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('--path', default='~/Downloads')
+parser.add_argument('--test-mode', action='store_true', help='Test mode is on')
 
+args = parser.parse_args()
+path = pathlib.Path(args.path).expanduser()
+
+# Array of file types
 IMG = ['.png', '.jpg', '.jpeg']
 CODE = ['.sh', '.py', '.js', '.c', '.cpp', '.html']
 DOC = ['.pdf', '.doc', '.docx', '.djvu']
 ISO = ['.iso', '.img']
 ARCH = ['.zip', '.tar', '.gz', '.bz2']
 
+# Array goal dirs
 DIRS = ['Images', 'Code', 'Doc', 'Iso', 'Archives']
 
+# Check existance of the dir.
 if not path.exists():
     path.mkdir()
     sys.exit()
 
+# Make dir, if it doesn't exist.
 for folder in DIRS:
     if not (path / folder).exists():
         (path / folder).mkdir()
 
+if args.test_mode:
+    print('That is working nice')
+    print(f"DIR: {DIRS}")
+    print(f"Path: {path}")
+    sys.exit()
+
+# Take every file and move it
 for item in path.iterdir():
     if item.is_file() and item.suffix.lower() in IMG:
         img_path = path / DIRS[0] / item.name
